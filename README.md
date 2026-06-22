@@ -229,27 +229,27 @@ Reports are automatically stored for future reference.
 ml-training-assistant/
 
 ├── backend/
-│   ├── api/
-│   ├── services/
-│   ├── utils/
-│   ├── config.py
+│   ├── db.py
 │   └── main.py
 │
 ├── frontend/
 │
 ├── mcp/
-│   ├── server.py
-│   └── tools/
+│   └── server.py
 │
 ├── uploads/
+│    └── db.json
 ├── reports/
 ├── charts/
 ├── training_logs/
+│
 ├── tests/
-├── docs/
+│    └── test_mcp.py
 │
 ├── requirements.txt
 ├── README.md
+├── LICENCE
+├── .gitignore
 └── .env.example
 ```
 
@@ -260,9 +260,9 @@ ml-training-assistant/
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/ml-training-assistant.git
+git clone https://github.com/Argha2004/Train-Assistant.git
 
-cd ml-training-assistant
+cd Train-Assistant
 ```
 
 ---
