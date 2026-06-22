@@ -240,6 +240,7 @@ ml-training-assistant/
 ├── uploads/
 │    └── db.json
 ├── reports/
+├── publics/
 ├── charts/
 ├── training_logs/
 │
