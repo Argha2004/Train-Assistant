@@ -432,12 +432,22 @@ These tools execute independently through the MCP server and provide structured 
 Add project screenshots here.
 
 * Home Page
+![Home Page](publics/Home.png)
+
 * AI Chat
+![Chat Page](publics/Chat.png)
+
 * Training Analysis
+
 * Experiment Comparison
+
 * GPU Dashboard
+
 * Dataset Analyzer
-* Generated Reports
+![Dataset Analyzer Page](publics/Dataset.png)
+
+* Settings
+![Settings Page](publics/Setting.png)
 
 ---
 
