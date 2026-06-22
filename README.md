@@ -295,18 +295,6 @@ pip install -r requirements.txt
 
 ---
 
-## 4. Configure environment variables
-
-Create a `.env` file:
-
-```env
-GEMINI_API_KEY=your_api_key_here
-
-MODEL_NAME=gemini-2.5-flash
-```
-
----
-
 ## 5. Install frontend dependencies
 
 ```bash
