@@ -1,0 +1,153 @@
+# Python
+**pycache**/
+*.py[cod]
+*$py.class
+
+
+# C extensions
+*.so
+
+
+# Distribution / packaging
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+
+# Python Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+
+# Logs
+*.log
+logs/
+*.out
+
+
+# IDEs
+.vscode/
+.idea/
+
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# Jupyter
+.ipynb_checkpoints/
+
+
+# React / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+node_modules/
+dist/
+
+
+# TypeScript
+*.tsbuildinfo
+
+
+# Generated Reports
+reports/*
+!reports/.gitkeep
+
+
+# Generated Charts
+charts/*
+!charts/.gitkeep
+
+
+# Uploaded Files
+uploads/*
+!uploads/.gitkeep
+
+
+# Training Logs
+# Ignore user uploads but keep folder
+training_logs/*
+!training_logs/.gitkeep
+
+
+# Generated Cache
+.cache/
+
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+
+# SQLite Databases
+*.sqlite3
+*.db
+
+
+# MCP Runtime
+.mcp_cache/
+.mcp/
+
+
+# Coverage
+coverage/
+coverage.xml
+
+
+# PyInstaller
+*.manifest
+*.spec
+
+
+# Backup Files
+*.bak
+*.old
+*.orig
+
+
+# Secrets
+secrets.json
+credentials.json
+service-account.json
+
+
+# Miscellaneous
+*.swp
+*.swo
+*~
