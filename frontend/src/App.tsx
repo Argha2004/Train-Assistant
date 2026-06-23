@@ -803,7 +803,7 @@ export default function App() {
                       <h3 className="text-base font-semibold">Developer</h3>
                     </div>
                     <p className="text-sm text-zinc-400 leading-relaxed mb-3">
-                      Build by <strong className="text-zinc-300">Argha2004</strong>.
+                      Build by <strong className="text-zinc-300">Arghadeep Pakhira</strong>.
                     </p>
                     <a
                       href="https://github.com/Argha2004"
