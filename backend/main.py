@@ -48,7 +48,7 @@ os.makedirs(REPORTS_DIR, exist_ok=True)
 
 # Mount static files for reports and charts
 app.mount("/api/charts", StaticFiles(directory=CHARTS_DIR), name="charts")
-app.mount("/api/reports", StaticFiles(directory=REPORTS_DIR), name="reports")
+app.mount("/api/reports-files", StaticFiles(directory=REPORTS_DIR), name="reports_files")
 
 class ChatRequest(BaseModel):
     conversation_id: Optional[str] = None
