@@ -582,7 +582,7 @@ export default function App() {
       {/* SIDEBAR */}
       <aside className="w-60 flex flex-col border-r border-zinc-500/60 bg-[#09090b]">
         {/* Logo */}
-        <div className="h-15 flex items-center px-5 border-b border-zinc-500/60">
+        <div className="h-15 flex items-center px-5 border-b border-zinc-800/60">
           <div className="flex items-center gap-2.5">
             {/* Box Container for Logo */}
             <div className="w-9 h-9 rounded-3xl bg-zinc-800 flex items-center justify-center overflow-hidden">
@@ -710,7 +710,7 @@ export default function App() {
         </nav>
 
         {/* Footer */}
-        <div className="px-4 py-6 border-t border-zinc-500/60">
+        <div className="px-4 py-4 border-t border-zinc-800/60">
           <div className="flex items-center gap-2.5">
             {/* Box Container for Logo */}
             <div className="w-8 h-8 rounded-2xl bg-zinc-800 flex items-center justify-center overflow-hidden">
@@ -766,7 +766,58 @@ export default function App() {
 
           {/* DASHBOARD */}
           {activeView === 'dashboard' && (
-            <div className="p-10 max-w-5xl mx-auto space-y-6">
+            <div className="p-10 max-w-5xl mx-auto space-y-5">
+
+              {/* Welcome & Instructions */}
+              <div className="rounded-2xl border border-zinc-800/60 bg-gradient-to-br from-zinc-900/80 to-zinc-900/20 p-6 relative overflow-hidden">
+                <div className="relative z-10 flex flex-col md:flex-row gap-12">
+                  {/* About */}
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 text-zinc-200 mb-3">
+                      <Cpu className="w-5 h-5 text-white-400" />
+                      <h3 className="text-base font-semibold">About ML Train Assistant</h3>
+                    </div>
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                      An intelligent dashboard for machine learning engineers to analyze model training logs. It combines
+                      <strong> Google Gemini AI</strong> with specialized diagnostic tools to detect overfitting, recommend hyperparameter tweaks, and track GPU performance in real-time.
+                    </p>
+                  </div>
+
+                  {/* How to Use */}
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 text-zinc-200 mb-3">
+                      <BookOpen className="w-5 h-5 text-white-400" />
+                      <h3 className="text-base font-semibold">How to Use</h3>
+                    </div>
+                    <ul className="text-sm text-zinc-400 space-y-2">
+                      <li className="flex gap-2"><span className="text-zinc-600">1.</span> <span><strong>Upload</strong> your training logs (CSV format) using the top bar.</span></li>
+                      <li className="flex gap-2"><span className="text-zinc-600">2.</span> <span><strong>Chat</strong> with the AI agent to analyze metrics or debug issues.</span></li>
+                      <li className="flex gap-2"><span className="text-zinc-600">3.</span> <span><strong>Monitor</strong> hardware usage in the GPU tab.</span></li>
+                    </ul>
+                  </div>
+
+                  {/* Developer */}
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 text-zinc-200 mb-3">
+                      <GitBranch className="w-5 h-5 text-white-400" />
+                      <h3 className="text-base font-semibold">Developer</h3>
+                    </div>
+                    <p className="text-sm text-zinc-400 leading-relaxed mb-3">
+                      Build by <strong className="text-zinc-300">Argha2004</strong>.
+                    </p>
+                    <a
+                      href="https://github.com/Argha2004"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white transition-colors duration-150 border border-zinc-700"
+                    >
+                      <GitBranch className="w-3.5 h-3.5" />
+                      <span>View GitHub</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Stat cards */}
               <div className="grid grid-cols-4 gap-4">
                 {[
@@ -1016,7 +1067,7 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="p-4 rounded-3xl text-zinc-500 border border-zinc-800 hover:bg-zinc-500/50 hover:text-zinc-300 transition-all duration-150 shrink-0"
+                    className="p-4 rounded-4xl text-zinc-500 border border-zinc-800 hover:bg-zinc-500/50 hover:text-zinc-300 transition-all duration-150 shrink-0"
                   >
                     <Upload className="w-4 h-4" />
                   </button>
@@ -1030,10 +1081,10 @@ export default function App() {
                   />
                   <button
                     type="submit"
-                    className="p-4 rounded-3xl bg-zinc-200 text-zinc-900 hover:bg-white transition-all duration-150 disabled:opacity-30 shrink-0"
+                    className="p-4 rounded-4xl bg-zinc-200 text-zinc-900 hover:bg-white transition-all duration-150 disabled:opacity-30 shrink-0"
                     disabled={isGenerating || !chatInput.trim()}
                   >
-                    <Send className="w-4 h-3" />
+                    <Send className="w-4 h-4" />
                   </button>
                 </form>
               </div>
@@ -1227,7 +1278,7 @@ export default function App() {
                   </div>
 
                   {uploads.length === 0 ? (
-                    <div className="text-center py-10 rounded-2xl border border-dashed border-zinc-800 bg-zinc-955/20">
+                    <div className="text-center py-10 rounded-xl border border-dashed border-zinc-800 bg-zinc-955/20">
                       <BookOpen className="w-8 h-8 mx-auto mb-3 text-zinc-600" />
                       <p className="text-sm font-medium text-zinc-400">No datasets uploaded yet</p>
                       <p className="text-xs text-zinc-600 mt-1 max-w-xs mx-auto mb-4">
@@ -1235,7 +1286,7 @@ export default function App() {
                       </p>
                       <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-850 text-zinc-300 hover:bg-zinc-800 transition-all duration-150"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-3xl text-xs font-medium bg-zinc-850 text-zinc-300 hover:bg-zinc-800 transition-all duration-150"
                       >
                         <Upload className="w-3 h-3" />
                         Upload CSV
