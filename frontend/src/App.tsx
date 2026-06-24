@@ -272,6 +272,29 @@ class SoundEffects {
     } catch (e) { }
   }
 
+  static playLoaderTick() {
+    if (!this.enabled) return;
+    try {
+      const ctx = this.initCtx();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.12);
+
+      gain.gain.setValueAtTime(0.015, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.12);
+    } catch (e) { }
+  }
+
   static playError() {
     if (!this.enabled) return;
     try {
@@ -304,9 +327,28 @@ class SoundEffects {
   }
 }
 
+const HELLOS = [
+  { text: "Hello", lang: "English" },
+  { text: "Hola", lang: "Spanish" },
+  { text: "Bonjour", lang: "French" },
+  { text: "Hallo", lang: "German" },
+  { text: "Ciao", lang: "Italian" },
+  { text: "नमस्ते", lang: "Hindi" },
+  { text: "নমস্কার", lang: "Bengali" },
+  { text: "こんにちは", lang: "Japanese" },
+  { text: "你好", lang: "Chinese" },
+  { text: "Привет", lang: "Russian" },
+  { text: "مرحبا", lang: "Arabic" },
+  { text: "Olá", lang: "Portuguese" },
+  { text: "안녕하세요", lang: "Korean" }
+];
+
 const API_BASE = "http://127.0.0.1:8000";
 
 export default function App() {
+  const [showLoader, setShowLoader] = useState(true);
+  const [loaderIndex, setLoaderIndex] = useState(0);
+  const [loaderFadingOut, setLoaderFadingOut] = useState(false);
   const [activeView, setActiveView] = useState<'dashboard' | 'chat' | 'comparison' | 'dataset' | 'gpu' | 'settings'>('dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
@@ -361,6 +403,29 @@ export default function App() {
   // Ref for auto scroll
   const chatEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Loading screen sequence
+  useEffect(() => {
+    SoundEffects.playLoaderTick();
+    const interval = setInterval(() => {
+      setLoaderIndex((prev) => {
+        if (prev < HELLOS.length - 1) {
+          SoundEffects.playLoaderTick();
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          SoundEffects.playSuccess();
+          setLoaderFadingOut(true);
+          setTimeout(() => {
+            setShowLoader(false);
+          }, 500);
+          return prev;
+        }
+      });
+    }, 450);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Load basic data
   useEffect(() => {
@@ -797,6 +862,50 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-[#09090b] text-zinc-100 overflow-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
+      {showLoader && (
+        <div className={`fixed inset-0 z-50 bg-[#09090b] flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${loaderFadingOut ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
+          }`}>
+          <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+            @keyframes fadeInUp {
+              from {
+                opacity: 0;
+                transform: translateY(1px) scale(0.90);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+              }
+            }
+            .animate-fade-in-up {
+              animation: fadeInUp 0.2s cubic-bezier(0.12, 0.8, 0.2, 0.8) forwards;
+            }
+          `}</style>
+
+          <div className="relative w-80 h-32 flex items-center justify-center overflow-hidden">
+            {HELLOS.map((hello, idx) => (
+              <span
+                key={idx}
+                className="absolute text-4xl sm:text-5xl font-medium text-zinc-100 tracking-tight drop-shadow-[0_0_35px_rgba(255,255,255,0.2)] pointer-events-none"
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  transition: "opacity 200ms ease-out, transform 250ms cubic-bezier(0.16, 1, 0.3, 1), filter 250ms ease-out",
+                  opacity: idx === loaderIndex ? 1 : 0,
+                  transform: idx === loaderIndex
+                    ? "translateY(0) scale(1)"
+                    : idx < loaderIndex
+                      ? "translateY(-24px) scale(0.92)"
+                      : "translateY(24px) scale(0.92)",
+                  filter: idx === loaderIndex ? "blur(0px)" : "blur(3px)"
+                }}
+              >
+                {hello.text}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black/60 z-30 md:hidden"
