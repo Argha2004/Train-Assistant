@@ -18,7 +18,6 @@ import {
   X,
   Activity,
   Thermometer,
-  Zap,
   GitBranch,
   Menu,
   Volume2,
@@ -343,7 +342,7 @@ const HELLOS = [
   { text: "안녕하세요", lang: "Korean" }
 ];
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin;
 
 export default function App() {
   const [showLoader, setShowLoader] = useState(true);
@@ -878,7 +877,7 @@ export default function App() {
               }
             }
             .animate-fade-in-up {
-              animation: fadeInUp 0.2s cubic-bezier(0.12, 0.8, 0.2, 0.8) forwards;
+              animation: fadeInUp 0.2s cubic-bezier(0, 1.5, 0.8, 1) forwards;
             }
           `}</style>
 
@@ -889,7 +888,7 @@ export default function App() {
                 className="absolute text-4xl sm:text-5xl font-medium text-zinc-100 tracking-tight drop-shadow-[0_0_35px_rgba(255,255,255,0.2)] pointer-events-none"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
-                  transition: "opacity 200ms ease-out, transform 250ms cubic-bezier(0.16, 1, 0.3, 1), filter 250ms ease-out",
+                  transition: "opacity 200ms ease-out, transform 500ms cubic-bezier(0, 1.5, 0.8, 1), filter 250ms ease-out",
                   opacity: idx === loaderIndex ? 1 : 0,
                   transform: idx === loaderIndex
                     ? "translateY(0) scale(1)"

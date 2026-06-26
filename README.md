@@ -1,5 +1,5 @@
 # ML Training Assistant
-<img src="publics/Main.png" width="900">
+<img src="publics/Train-AI.png" width="900">
 
 > **An AI-Powered Machine Learning Training Analysis Platform built with Google Gemini, FastAPI, React, and Model Context Protocol (MCP).**
 
